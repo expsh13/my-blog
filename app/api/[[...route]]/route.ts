@@ -7,7 +7,7 @@ export const runtime = "edge";
 
 const app = new Hono().basePath("/api");
 
-app.get("/hello", zValidator("query", z.ob), (c) => {
+app.get("/hello", zValidator("query", z.object), (c) => {
 	return c.json({
 		message: "Hello Next.js!",
 	});
