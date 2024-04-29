@@ -1,26 +1,12 @@
-import { zValidator } from "@hono/zod-validator";
 import { Hono } from "hono";
 import { handle } from "hono/vercel";
-import { z } from "zod";
 
-export const runtime = "edge";
+const app = new Hono();
 
-const app = new Hono().basePath("/api");
-
-app.get(
-	"/hello",
-	zValidator(
-		"query",
-		z.object({
-			name: z.string(),
-		}),
-	),
-	(c) => {
-		const { name } = c.req.valid("query");
-		return c.json({
-			message: `Hello ${name}!`,
-		});
-	},
-);
+app.get("/hello", (c) => {
+	return c.json({
+		message: "Hello!",
+	});
+});
 
 export const GET = handle(app);
