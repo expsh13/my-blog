@@ -5,7 +5,7 @@ import { z } from "zod";
 
 const app = new Hono().basePath("/api");
 
-app
+const route = app
 	.get(
 		"/hello",
 		zValidator(
@@ -26,6 +26,8 @@ app
 			message: "Hello post!",
 		});
 	});
+
+export type AppType = typeof route;
 
 export const GET = handle(app);
 export const POST = handle(app);
