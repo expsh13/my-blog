@@ -10,6 +10,10 @@ const schema = z.object({
 	title: z.string(),
 });
 
+type Todo = z.infer<typeof schema>;
+
+const todos: Todo[] = [];
+
 const route = app
 	.get(
 		"/hello",
