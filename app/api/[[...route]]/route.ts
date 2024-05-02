@@ -5,6 +5,11 @@ import { z } from "zod";
 
 const app = new Hono().basePath("/api");
 
+const schema = z.object({
+	id: z.string(),
+	title: z.string(),
+});
+
 const route = app
 	.get(
 		"/hello",
