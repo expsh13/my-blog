@@ -1,19 +1,13 @@
 import { Hono } from "hono";
 import { handle } from "hono/vercel";
+import users from "./users";
 
 const app = new Hono().basePath("/api");
 
-app
-	.get("/hello", (c) => {
-		return c.json({
-			message: "Hello get!",
-		});
-	})
-	.post("/hello", (c) => {
-		return c.json({
-			message: "Hello post!",
-		});
-	});
+const routes = app.route("/users", users);
 
-export const GET = handle(app);
+// 型作成
+export default app;
+export type AppType = typeof routes;
 export const POST = handle(app);
+export const GET = handle(app);
