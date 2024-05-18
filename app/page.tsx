@@ -20,5 +20,5 @@ const fetchData = async () => {
 export default async function Home() {
 	const data = await fetchData();
 	console.log(data?.message);
-	return <div>page</div>;
+	return <div>message：{data?.message}</div>;
 }
