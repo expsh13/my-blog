@@ -6,37 +6,20 @@ import { z } from "zod";
 const app = new Hono().basePath("/api");
 
 const schema = z.object({
-	id: z.string(),
-	title: z.string(),
+	name: z.string(),
+	age: z.number(),
 });
 
-type Todo = z.infer<typeof schema>;
-
-const todos: Todo[] = [];
-
-const route = app
-	.get(
-		"/hello",
-		zValidator(
-			"query",
-			z.object({
-				name: z.string(),
-			}),
-		),
-		(c) => {
-			const { name } = c.req.valid("query");
-			return c.json({
-				message: `Hello! ${name}`,
-			});
-		},
-	)
-	.post("/hello", (c) => {
-		return c.json({
-			message: "Hello post!",
-		});
+// api
+const route = app.post("/users", zValidator("json", schema), (c) => {
+	// 検証済みのデータ
+	const { name, age } = c.req.valid("json");
+	return c.json({
+		message: `${name} is ${age} years old`,
 	});
+});
 
+// 型作成
 export type AppType = typeof route;
 
-export const GET = handle(app);
-export const POST = handle(app);
+export const POST = handle(route);

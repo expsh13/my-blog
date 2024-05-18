@@ -2,7 +2,7 @@
 	"editor.codeActionsOnSave": {
 		"quickfix.biome": "explicit",
 		"source.organizeImports.biome": "explicit",
-		"source.organizeImports": true
+		"source.organizeImports": "explicit"
 	},
 	"editor.defaultFormatter": "biomejs.biome"
 }
