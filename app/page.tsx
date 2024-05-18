@@ -4,6 +4,7 @@ import type { AppType } from "./api/[[...route]]/route";
 const fetchData = async () => {
 	// httpクライアント作成
 	const client = hc<AppType>("http://localhost:3000/");
+
 	const res = await client.api.users.$post({
 		json: {
 			name: "human",
