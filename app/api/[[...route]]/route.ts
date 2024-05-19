@@ -1,10 +1,10 @@
 import { Hono } from "hono";
 import { handle } from "hono/vercel";
-import users from "./users";
+import posts from "./posts";
 
 const app = new Hono().basePath("/api");
 
-const routes = app.route("/users", users);
+const routes = app.route("/posts", posts);
 
 // 型作成
 export default app;
